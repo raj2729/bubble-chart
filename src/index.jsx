@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { createRoot } from "react-dom/client";
 import { AgChartsReact } from "ag-charts-react";
+import './index.css'
 
 var hours = [
   "Risk score",
@@ -220,6 +221,7 @@ var data = rawData.map(function (item) {
     hour: hours[item[1]],
     day: days[item[0]],
     size: item[2],
+    color:'green'
   };
 });
 
@@ -253,6 +255,8 @@ const ChartExample = () => {
           size: 0,
           maxSize: 30,
           fill: "rgb(236, 71, 105)",
+          // fills:['#c16068', '#a2bf8a', '#ebcc87'],
+          // fill: ['red', 'blue'],
           fillOpacity: 0.85,
           strokeOpacity: 0.85,
         },
@@ -293,8 +297,73 @@ const ChartExample = () => {
     ],
   });
 
-  return <AgChartsReact options={options} />;
+  return (
+    <div style={{display:"flex"}}>
+      <div style={{position:'relative', top:'10px', fontSize:'13px'}}>
+      <table class="table"
+      //  style={{height:'100%'}}
+       >
+  <thead>
+    <tr style={{}}>
+      <th scope="col">No.</th>
+      <th scope="col">RiskScore</th>
+      <th scope="col">Genetics</th>
+      <th scope="col">MultiOmic</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>142k</td>
+      <td>241</td>
+      <td>HLAC</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>231</td>
+      <td>244</td>
+      <td>APP</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>345</td>
+      <td>3453</td>
+      <td>APOE</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>345</td>
+      <td>353</td>
+      <td>HLA-B</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>343</td>
+      <td>352</td>
+      <td>MYO5A</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>3532</td>
+      <td>3453</td>
+      <td>PLEC</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>3543</td>
+      <td>3453</td>
+      <td>HLA-DRB1r</td>
+    </tr>
+  </tbody>
+</table>
+      </div>
+      <div style={{width:"100%", height:'675px'}}>
+  <AgChartsReact options={options} />
+  </div>
+  </div>
+  );
 };
+
 
 const root = createRoot(document.getElementById("root"));
 root.render(<ChartExample />);
